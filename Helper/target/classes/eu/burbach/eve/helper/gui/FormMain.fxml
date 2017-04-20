@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="223.0" prefWidth="314.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="FormMainController">
+   <children>
+      <BorderPane layoutY="-3.0" prefHeight="345.0" prefWidth="446.0">
+         <top>
+            <Pane prefHeight="66.0" prefWidth="446.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="ButtonExit" mnemonicParsing="false" onAction="#buttonExitAction" text="Exit" />
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
