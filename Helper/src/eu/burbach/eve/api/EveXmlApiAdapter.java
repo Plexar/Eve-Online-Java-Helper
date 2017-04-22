@@ -74,7 +74,19 @@ public class EveXmlApiAdapter {
 	}
 	
 	public List<String> getSkillQueue(String charID) {
+		if (charID==null || charID.trim().length()<=0)
+			return new ArrayList<String>();
 		return get(read("char/SkillQueue", "keyID", keyId, "vCode", vCode,"characterID",charID), 
 				"skillqueue","queuePosition","typeID","level","startTime","endTime");
+	}
+	
+	public String charName2Id(String name) {
+		if (name==null || name.trim().length()<=0)
+			return "";
+		List<String> l= get(read("eve/CharacterID", "names", name),"characters","characterID");
+		if (l.size()<=0)
+			return "";
+		else
+			return l.get(0);
 	}
 }

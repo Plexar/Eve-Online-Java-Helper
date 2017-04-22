@@ -15,6 +15,7 @@ public class FxMain extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
         FXMLLoader.load(getClass().getResource("/eu/burbach/eve/helper/gui/FormAbout.fxml"));
+        FXMLLoader.load(getClass().getResource("/eu/burbach/eve/helper/gui/FormHelp.fxml"));
 
 		Parent root = FXMLLoader.load(getClass().getResource("/eu/burbach/eve/helper/gui/FormMain.fxml"));
         Scene scene = new Scene(root);
