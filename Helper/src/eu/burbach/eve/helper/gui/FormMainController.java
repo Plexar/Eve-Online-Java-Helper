@@ -1,7 +1,5 @@
 package eu.burbach.eve.helper.gui;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.prefs.Preferences;
@@ -15,12 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import com.sun.javafx.collections.ObservableListWrapper;
-
 import eu.burbach.eve.api.EveXmlApiAdapter;
 
-@SuppressWarnings("restriction")
 public class FormMainController {
 	@FXML TextField keyid;
 	@FXML TextField vcode;
@@ -28,7 +22,7 @@ public class FormMainController {
 	@FXML TableView<EveChar> charTable;
 	@FXML TableColumn<EveChar,String> namecol;
 	@FXML TableColumn<EveChar,String> realcol;
-	
+		
 	public static class EveChar {
 		private final SimpleStringProperty name;
 		private final SimpleStringProperty realName;
@@ -59,16 +53,18 @@ public class FormMainController {
 		Preferences pref= Preferences.userRoot().node("/eu/burbach/eve/helper");
 		keyid.setText(pref.get("keyid", ""));
 		vcode.setText(pref.get("vcode", ""));
+
 		namecol.setCellValueFactory(
                 new PropertyValueFactory<EveChar,String>("name"));		
 		realcol.setCellValueFactory(
                 new PropertyValueFactory<EveChar,String>("realName"));		
 	}
 	
-    @FXML protected void handleButtonEndeAction(ActionEvent event) {
+    @FXML protected void commandEnde(ActionEvent event) {
         System.exit(0);
     }
-    @FXML protected void handleButtonDatenLadenAction(ActionEvent event) {
+    
+    @FXML protected void commandDatenLaden(ActionEvent event) {
     	try {
     		Preferences pref= Preferences.userRoot().node("/eu/burbach/eve/helper");
     		pref.put("keyid", keyid.getText());
@@ -83,6 +79,14 @@ public class FormMainController {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
+    }
+
+    @FXML protected void commandAbout(ActionEvent event) {
+    	FormAboutController.getPopup().show(FxMain.getStage());
+    }
+        
+    @FXML protected void commandHelp(ActionEvent event) {
+    	
     }
 }
 

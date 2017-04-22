@@ -72,4 +72,9 @@ public class EveXmlApiAdapter {
 	public List<String> getMemberNames() {
 		return get(read("corp/MemberTracking", "keyID", keyId, "vCode", vCode), "members","name");
 	}
+	
+	public List<String> getSkillQueue(String charID) {
+		return get(read("char/SkillQueue", "keyID", keyId, "vCode", vCode,"characterID",charID), 
+				"skillqueue","queuePosition","typeID","level","startTime","endTime");
+	}
 }

@@ -8,22 +8,7 @@
 
 <AnchorPane prefHeight="553.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.burbach.eve.helper.gui.FormMainController">
    <children>
-      <BorderPane layoutY="-3.0" prefHeight="511.0" prefWidth="648.0">
-         <top>
-            <Pane prefHeight="66.0" prefWidth="446.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox spacing="5.0">
-                     <children>
-                        <Button fx:id="ButtonExit" mnemonicParsing="false" onAction="#handleButtonEndeAction" text="Exit" />
-                        <Button mnemonicParsing="false" onAction="#handleButtonDatenLadenAction" text="Daten laden" />
-                     </children>
-                     <padding>
-                        <Insets left="10.0" right="5.0" top="10.0" />
-                     </padding>
-                  </HBox>
-               </children>
-            </Pane>
-         </top>
+      <BorderPane layoutY="-3.0" prefHeight="553.0" prefWidth="726.0">
          <center>
             <TabPane prefHeight="288.0" prefWidth="475.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
@@ -31,11 +16,11 @@
                   <content>
                         <Pane prefHeight="269.0" prefWidth="598.0">
                            <children>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="562.0">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="719.0">
                                  <children>
-                                    <ScrollPane prefHeight="317.0" prefViewportHeight="235.0" prefViewportWidth="562.0" prefWidth="648.0">
+                                    <ScrollPane prefHeight="314.0" prefViewportHeight="235.0" prefViewportWidth="562.0" prefWidth="720.0">
                                        <content>
-                                          <TableView fx:id="charTable" prefHeight="318.0" prefWidth="646.0">
+                                          <TableView fx:id="charTable" prefHeight="392.0" prefWidth="721.0">
                                             <columns>
                                               <TableColumn fx:id="namecol" prefWidth="205.0" text="Char" />
                                               <TableColumn fx:id="realcol" prefWidth="235.0" text="Real Life" />
@@ -70,13 +55,41 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER_RIGHT" text="Key ID:" />
-                  <Label text="vCode:" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER_RIGHT" text="Key ID:">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin></Label>
+                  <Label text="vCode:" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin></Label>
                   <TextField fx:id="keyid" GridPane.columnIndex="1" />
                   <TextField fx:id="vcode" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </bottom>
+         <top>
+            <VBox prefHeight="31.0" prefWidth="726.0" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Datei">
+                        <items>
+                              <MenuItem mnemonicParsing="false" onAction="#commandDatenLaden" text="Daten aus Eve laden" />
+                              <MenuItem mnemonicParsing="false" onAction="#commandAbout" text="Über das Programm" />
+                          <MenuItem mnemonicParsing="false" onAction="#commandEnde" text="Ende" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Hilfe">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#commandHelp" text="Hilfe" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+               </children>
+            </VBox>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>
