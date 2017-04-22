@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" 
+        codebase="http://www.hburbach.de/downloads"
+        href="evehelper.jnlp">
+    <information>
+        <title>Simple Eve Helper</title>
+        <vendor>Holger Burbach</vendor>
+    </information>
+    <offline-allowed/>
+    <security>
+        <all-permission/>
+    </security>    
+    <resources>        
+        <j2se version="1.8+"
+              href="http://java.sun.com/products/autodl/j2se"/>
+        <jar href="evehelper.jar" main="true" />
+
+    </resources>
+    <application-desc
+         name="Simple Eve Helper"
+         main-class="eu.burbach.eve.helper.Main">
+     </application-desc>
+     <update check="background"/>
+</jnlp>

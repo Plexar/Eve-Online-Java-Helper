@@ -1,0 +1,1 @@
+jarsigner -keystore KeyStore.jks dist/evehelper.jar eu.burbach.eve 
