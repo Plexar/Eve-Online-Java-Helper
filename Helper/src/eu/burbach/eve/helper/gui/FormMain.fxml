@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="553.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.burbach.eve.helper.gui.FormMainController">
    <children>
-      <BorderPane layoutY="-3.0" prefHeight="553.0" prefWidth="726.0">
+      <BorderPane layoutY="-3.0" prefHeight="607.0" prefWidth="865.0">
          <center>
             <TabPane fx:id="tabPane" prefHeight="288.0" prefWidth="475.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
@@ -18,9 +18,9 @@
                            <children>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="719.0">
                                  <children>
-                                    <ScrollPane prefHeight="389.0" prefViewportHeight="235.0" prefViewportWidth="562.0" prefWidth="720.0">
+                                    <ScrollPane prefHeight="432.0" prefViewportHeight="235.0" prefViewportWidth="562.0" prefWidth="865.0">
                                        <content>
-                                          <TableView fx:id="charTable" onMouseClicked="#tableCharacterSelected" prefHeight="392.0" prefWidth="721.0">
+                                          <TableView fx:id="charTable" onMouseClicked="#tableCharacterSelected" prefHeight="430.0" prefWidth="864.0">
                                             <columns>
                                               <TableColumn fx:id="namecol" editable="false" prefWidth="205.0" text="Char" />
                                               <TableColumn fx:id="realcol" prefWidth="235.0" text="Real Life" />
@@ -36,17 +36,17 @@
                 </Tab>
                 <Tab fx:id="tabSkill" text="Skill Queue">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="437.0" prefWidth="853.0">
                            <children>
-                              <ScrollPane layoutX="7.0" prefHeight="398.0" prefViewportHeight="200.0" prefViewportWidth="200.0" prefWidth="716.0">
+                              <ScrollPane layoutX="7.0" prefHeight="442.0" prefViewportHeight="200.0" prefViewportWidth="200.0" prefWidth="850.0">
                                  <content>
-                                    <TableView fx:id="charSkillTable" layoutX="125.0" layoutY="40.0" prefHeight="384.0" prefWidth="711.0">
+                                    <TableView fx:id="charSkillTable" layoutX="125.0" layoutY="40.0" prefHeight="392.0" prefWidth="849.0">
                                       <columns>
-                                        <TableColumn fx:id="queuecol" prefWidth="108.0" text="Queue Position" />
-                                        <TableColumn fx:id="typeidcol" prefWidth="139.0" text="Type ID" />
-                                          <TableColumn fx:id="levelcol" prefWidth="75.0" text="Level" />
-                                          <TableColumn fx:id="startcol" prefWidth="149.0" text="Start Time" />
-                                          <TableColumn fx:id="endcol" prefWidth="175.0" text="End Time" />
+                                        <TableColumn fx:id="queuecol" prefWidth="37.0" text="Pos." />
+                                        <TableColumn fx:id="typeidcol" prefWidth="357.0" text="Type ID" />
+                                          <TableColumn fx:id="levelcol" prefWidth="48.0" text="Level" />
+                                          <TableColumn fx:id="startcol" prefWidth="175.0" text="Start Time" />
+                                          <TableColumn fx:id="endcol" prefWidth="184.0" text="End Time" />
                                       </columns>
                                     </TableView>
                                  </content>
@@ -58,7 +58,7 @@
             </TabPane>
          </center>
          <bottom>
-            <GridPane BorderPane.alignment="CENTER">
+            <GridPane prefHeight="94.0" prefWidth="786.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="110.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="309.0" />

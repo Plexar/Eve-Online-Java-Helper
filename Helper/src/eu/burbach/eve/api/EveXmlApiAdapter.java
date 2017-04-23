@@ -2,18 +2,25 @@ package eu.burbach.eve.api;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
 public class EveXmlApiAdapter {
 	private String keyId;
 	private String vCode;
+	
+	private Document skillTree=null;
+	private HashMap<String,String> skillTypeId2Name= null;
 
 	public EveXmlApiAdapter(String k, String v) {
 		keyId= k;
@@ -56,8 +63,16 @@ public class EveXmlApiAdapter {
 				NodeList charList = e.getElementsByTagName("row");
 				for(int chars = 0; chars < charList.getLength(); chars++) {
 					Element charElem = (Element) charList.item(chars);
-					for (String j: args)
-						res.add(charElem.getAttribute(j));
+					List<String> tmp= new ArrayList<>();
+					for (String j: args) {
+						String value= charElem.getAttribute(j);
+						if (value==null || value.trim().length()<=0) {
+							tmp.clear();
+							break;
+						}
+						tmp.add(charElem.getAttribute(j));						
+					}
+					res.addAll(tmp);
 				}
 			}
 		}
@@ -88,5 +103,22 @@ public class EveXmlApiAdapter {
 			return "";
 		else
 			return l.get(0);
+	}
+	
+	public String skillTypeId2Name(String typeId) {
+		if (skillTree==null) {
+			skillTree= read("eve/SkillTree");
+		}
+		if (skillTypeId2Name==null) {
+			skillTypeId2Name= new HashMap<>();
+			List<String> list= get(skillTree,"skills","typeID","typeName");
+			for (int i=0; i<list.size();i+=2) 
+				skillTypeId2Name.put(list.get(i), list.get(i+1));			
+		}
+		String res= skillTypeId2Name.get(typeId);
+		if (res==null)
+			return typeId;
+		else
+			return res;
 	}
 }

@@ -122,7 +122,7 @@ public class FormMainController {
     	List<String> skills= eve.getSkillQueue(eve.charName2Id(namecol.getCellData(cells.get(0).getRow()).toString()));
     	ObservableList<EveCharSkill> list= FXCollections.observableArrayList();
     	for(int i=0; i<skills.size(); i+=5) 
-    		list.add(new EveCharSkill(skills.get(i),skills.get(i+1),skills.get(i+2),skills.get(i+3),skills.get(i+4)));
+    		list.add(new EveCharSkill(skills.get(i),eve.skillTypeId2Name(skills.get(i+1)),skills.get(i+2),skills.get(i+3),skills.get(i+4)));
     	charSkillTable.setItems(list);
     	tabPane.getSelectionModel().select(1);
     }
