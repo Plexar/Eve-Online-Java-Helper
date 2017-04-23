@@ -8,6 +8,7 @@ public class EveCharSkill {
 	private final SimpleStringProperty level;
 	private final SimpleStringProperty startTime;
 	private final SimpleStringProperty endTime;
+	private final SimpleStringProperty skillPoints;
 	
 	public EveCharSkill(String queuePosition, String typeId, String level, String startTime, String endTime) {
 		this.queuePosition= new SimpleStringProperty(queuePosition);
@@ -15,6 +16,12 @@ public class EveCharSkill {
 		this.level= new SimpleStringProperty(level);
 		this.startTime= new SimpleStringProperty(startTime);
 		this.endTime= new SimpleStringProperty(endTime);
+		this.skillPoints= new SimpleStringProperty("");		
+	}
+	
+	public EveCharSkill(String typeId, String level, String skillPoints) {
+		this("",typeId,level,"","");
+		this.skillPoints.set(skillPoints);
 	}
 
 	public String getQueuePosition() {
@@ -55,5 +62,13 @@ public class EveCharSkill {
 	
 	public void setEndTime(String s) {
 		endTime.set(s);
+	}
+	
+	public String getSkillPoints() {
+		return skillPoints.get();
+	}
+	
+	public void setSkillPoints(String s) {
+		skillPoints.set(s);
 	}
 }

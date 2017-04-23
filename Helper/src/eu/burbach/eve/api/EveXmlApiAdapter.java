@@ -59,7 +59,8 @@ public class EveXmlApiAdapter {
 		NodeList nList= doc.getElementsByTagName("rowset");
 		for(int i = 0; i < nList.getLength(); i++) {
 			Element e = (Element) nList.item(i);
-			if(e.getAttribute("name").toLowerCase().equals(name)) {
+			String rowName= e.getAttribute("name");
+			if(rowName.toLowerCase().equals(name)) {
 				NodeList charList = e.getElementsByTagName("row");
 				for(int chars = 0; chars < charList.getLength(); chars++) {
 					Element charElem = (Element) charList.item(chars);
@@ -70,7 +71,7 @@ public class EveXmlApiAdapter {
 							tmp.clear();
 							break;
 						}
-						tmp.add(charElem.getAttribute(j));						
+						tmp.add(value);						
 					}
 					res.addAll(tmp);
 				}
@@ -104,7 +105,13 @@ public class EveXmlApiAdapter {
 		else
 			return l.get(0);
 	}
-	
+
+	/**
+	 * liefert zu einer Skill ID (Nummer) den Namen als Text; die Liste aller Skills vom wird Eve Server geladen,
+	 * falls dies vorher noch nicht geschehen ist
+	 * @param typeId Skill ID (Nummer)
+	 * @return Name des Skills als Text
+	 */
 	public String skillTypeId2Name(String typeId) {
 		if (skillTree==null) {
 			skillTree= read("eve/SkillTree");
@@ -120,5 +127,15 @@ public class EveXmlApiAdapter {
 			return typeId;
 		else
 			return res;
+	}
+
+	/**
+	 * liest die bekannten Skills eines Charakters vom Eve Server
+	 * @param charId ID (Nummer) des Charakters
+	 * @return Liste der Skills in Gruppen zu 3 Werten: Skill ID, Skill Level, Skill Punkte
+	 */
+	public List<String> getKnownSkills(String charId) {
+		return get(read("char/CharacterSheet","keyID", keyId, "vCode", vCode,"characterID",charId),
+				"skills","typeID","level","skillpoints");
 	}
 }

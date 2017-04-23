@@ -40,6 +40,11 @@ public class FormMainController {
 	@FXML TableColumn<EveCharSkill,String> startcol;
 	@FXML TableColumn<EveCharSkill,String> endcol;
 	
+	@FXML TableView<EveCharSkill> knownSkillTable;
+	@FXML TableColumn<EveCharSkill,String> knowntypeidcol;
+	@FXML TableColumn<EveCharSkill,String> knownlevelcol;
+	@FXML TableColumn<EveCharSkill,String> knownpointscol;
+	
 	EveXmlApiAdapter eve;
 	
 	@FXML protected void initialize() {
@@ -62,6 +67,13 @@ public class FormMainController {
                 new PropertyValueFactory<EveCharSkill,String>("startTime"));		
 		endcol.setCellValueFactory(
                 new PropertyValueFactory<EveCharSkill,String>("endTime"));		
+		
+		knowntypeidcol.setCellValueFactory(
+                new PropertyValueFactory<EveCharSkill,String>("typeId"));		
+		knownlevelcol.setCellValueFactory(
+                new PropertyValueFactory<EveCharSkill,String>("level"));		
+		knownpointscol.setCellValueFactory(
+                new PropertyValueFactory<EveCharSkill,String>("skillPoints"));
 		
 		eve= new EveXmlApiAdapter(keyid.getText(), vcode.getText());
 		
@@ -119,12 +131,19 @@ public class FormMainController {
         if (cells==null || cells.size()<=0)
         	return;
     	
-    	List<String> skills= eve.getSkillQueue(eve.charName2Id(namecol.getCellData(cells.get(0).getRow()).toString()));
+        String charid= eve.charName2Id(namecol.getCellData(cells.get(0).getRow()).toString());
+    	List<String> skills= eve.getSkillQueue(charid);
     	ObservableList<EveCharSkill> list= FXCollections.observableArrayList();
     	for(int i=0; i<skills.size(); i+=5) 
     		list.add(new EveCharSkill(skills.get(i),eve.skillTypeId2Name(skills.get(i+1)),skills.get(i+2),skills.get(i+3),skills.get(i+4)));
     	charSkillTable.setItems(list);
     	tabPane.getSelectionModel().select(1);
+    	
+    	skills= eve.getKnownSkills(charid);
+    	list= FXCollections.observableArrayList();
+    	for(int i=0; i<skills.size(); i+=3)
+    		list.add(new EveCharSkill(eve.skillTypeId2Name(skills.get(i)),skills.get(i+1),skills.get(i+2)));
+    	knownSkillTable.setItems(list);
     }
 
     @FXML protected void commandAbout(ActionEvent event) {

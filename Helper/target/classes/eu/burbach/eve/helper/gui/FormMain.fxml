@@ -42,9 +42,9 @@
                                  <content>
                                     <TableView fx:id="charSkillTable" layoutX="125.0" layoutY="40.0" prefHeight="392.0" prefWidth="849.0">
                                       <columns>
-                                        <TableColumn fx:id="queuecol" prefWidth="37.0" text="Pos." />
-                                        <TableColumn fx:id="typeidcol" prefWidth="357.0" text="Type ID" />
-                                          <TableColumn fx:id="levelcol" prefWidth="48.0" text="Level" />
+                                        <TableColumn fx:id="queuecol" prefWidth="54.0" text="Pos." />
+                                        <TableColumn fx:id="typeidcol" prefWidth="288.0" text="Skillname" />
+                                          <TableColumn fx:id="levelcol" prefWidth="100.0" text="Level" />
                                           <TableColumn fx:id="startcol" prefWidth="175.0" text="Start Time" />
                                           <TableColumn fx:id="endcol" prefWidth="184.0" text="End Time" />
                                       </columns>
@@ -54,6 +54,25 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
+                  <Tab text="bekannte Skills">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollPane prefHeight="446.0" prefViewportHeight="200.0" prefViewportWidth="200.0" prefWidth="859.0">
+                                 <content>
+                                    <TableView fx:id="knownSkillTable" prefHeight="441.0" prefWidth="860.0">
+                                      <columns>
+                                        <TableColumn fx:id="knowntypeidcol" prefWidth="302.0" text="Skillname" />
+                                        <TableColumn fx:id="knownlevelcol" prefWidth="53.0" text="Level" />
+                                          <TableColumn fx:id="knownpointscol" prefWidth="133.0" text="Skillpunkte" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
               </tabs>
             </TabPane>
          </center>
