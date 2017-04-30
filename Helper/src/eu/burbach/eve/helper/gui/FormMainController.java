@@ -17,9 +17,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import eu.burbach.eve.api.EveXmlApiAdapter;
+import eu.burbach.eve.api.EveApiAdapter;
 import eu.burbach.eve.helper.db.EveChar;
 import eu.burbach.eve.helper.db.EveCharSkill;
+import eu.burbach.eve.helper.db.Fitting;
 
 public class FormMainController {
 	@FXML TextField keyid;
@@ -44,8 +45,11 @@ public class FormMainController {
 	@FXML TableColumn<EveCharSkill,String> knowntypeidcol;
 	@FXML TableColumn<EveCharSkill,String> knownlevelcol;
 	@FXML TableColumn<EveCharSkill,String> knownpointscol;
+
+	@FXML TableView<Fitting> fittingTable;
+	@FXML TableColumn<EveCharSkill,String> fittingnamecol;
 	
-	EveXmlApiAdapter eve;
+	EveApiAdapter eve;
 	
 	@FXML protected void initialize() {
 		Preferences pref= Preferences.userRoot().node("/eu/burbach/eve/helper");
@@ -54,8 +58,6 @@ public class FormMainController {
 
 		namecol.setCellValueFactory(
                 new PropertyValueFactory<EveChar,String>("name"));		
-		realcol.setCellValueFactory(
-                new PropertyValueFactory<EveChar,String>("realName"));
 		
 		queuecol.setCellValueFactory(
                 new PropertyValueFactory<EveCharSkill,String>("queuePosition"));		
@@ -75,7 +77,10 @@ public class FormMainController {
 		knownpointscol.setCellValueFactory(
                 new PropertyValueFactory<EveCharSkill,String>("skillPoints"));
 		
-		eve= new EveXmlApiAdapter(keyid.getText(), vcode.getText());
+		fittingnamecol.setCellValueFactory(
+                new PropertyValueFactory<EveCharSkill,String>("name"));
+		
+		eve= new EveApiAdapter(keyid.getText(), vcode.getText());
 		
 		commandPlayerCharsLaden(null);
 	}
@@ -144,6 +149,13 @@ public class FormMainController {
     	for(int i=0; i<skills.size(); i+=3)
     		list.add(new EveCharSkill(eve.skillTypeId2Name(skills.get(i)),skills.get(i+1),skills.get(i+2)));
     	knownSkillTable.setItems(list);
+    	
+    	ObservableList<Fitting> fittingItems= FXCollections.observableArrayList();
+    	List<String> fittings= eve.getFittings(charid);
+    	list= FXCollections.observableArrayList();
+    	for (int i=0; i<fittings.size(); i++)
+    		fittingItems.add(new Fitting(fittings.get(i),""));
+    	fittingTable.setItems(fittingItems);
     }
 
     @FXML protected void commandAbout(ActionEvent event) {

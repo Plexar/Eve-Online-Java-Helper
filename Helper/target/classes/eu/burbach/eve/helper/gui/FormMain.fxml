@@ -23,7 +23,6 @@
                                           <TableView fx:id="charTable" onMouseClicked="#tableCharacterSelected" prefHeight="430.0" prefWidth="864.0">
                                             <columns>
                                               <TableColumn fx:id="namecol" editable="false" prefWidth="205.0" text="Char" />
-                                              <TableColumn fx:id="realcol" prefWidth="235.0" text="Real Life" />
                                             </columns>
                                           </TableView>
                                        </content>
@@ -56,11 +55,11 @@
                 </Tab>
                   <Tab text="bekannte Skills">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="853.0">
                            <children>
-                              <ScrollPane prefHeight="446.0" prefViewportHeight="200.0" prefViewportWidth="200.0" prefWidth="859.0">
+                              <ScrollPane prefHeight="445.0" prefViewportHeight="200.0" prefViewportWidth="200.0" prefWidth="852.0">
                                  <content>
-                                    <TableView fx:id="knownSkillTable" prefHeight="441.0" prefWidth="860.0">
+                                    <TableView fx:id="knownSkillTable" prefHeight="443.0" prefWidth="851.0">
                                       <columns>
                                         <TableColumn fx:id="knowntypeidcol" prefWidth="302.0" text="Skillname" />
                                         <TableColumn fx:id="knownlevelcol" prefWidth="53.0" text="Level" />
@@ -71,6 +70,28 @@
                               </ScrollPane>
                            </children>
                         </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Char Fittings">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollPane prefViewportHeight="448.0" prefViewportWidth="865.0">
+                                 <content>
+                                    <TableView fx:id="fittingTable" prefHeight="448.0" prefWidth="865.0">
+                                      <columns>
+                                        <TableColumn fx:id="fittingnamecol" prefWidth="236.0" text="Name" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Corp Fittings">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                   </Tab>
               </tabs>

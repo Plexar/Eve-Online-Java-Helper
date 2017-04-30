@@ -1,30 +1,37 @@
 package eu.burbach.eve.api;
 
+import io.swagger.client.ApiException;
+import io.swagger.client.Configuration;
+import io.swagger.client.api.FittingsApi;
+import io.swagger.client.model.GetCharactersCharacterIdFittings200Ok;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
-public class EveXmlApiAdapter {
+public class EveApiAdapter {
 	private String keyId;
 	private String vCode;
+	
 	
 	private Document skillTree=null;
 	private HashMap<String,String> skillTypeId2Name= null;
 
-	public EveXmlApiAdapter(String k, String v) {
+	public EveApiAdapter(String k, String v) {
 		keyId= k;
 		vCode= v;
+		Configuration.getDefaultApiClient().setVerifyingSsl(false);
+		Configuration.getDefaultApiClient().setApiKey(vCode);
+		
+//		Configuration.getDefaultApiClient().setApiKey(v);
 	}		
 	
 	private Document read(String f, String... args) {
@@ -137,5 +144,20 @@ public class EveXmlApiAdapter {
 	public List<String> getKnownSkills(String charId) {
 		return get(read("char/CharacterSheet","keyID", keyId, "vCode", vCode,"characterID",charId),
 				"skills","typeID","level","skillpoints");
+	}
+	
+	public List<String> getFittings(String charID) {
+		List<String> res= new ArrayList<>();
+		FittingsApi api= new FittingsApi();
+		try {
+			List<GetCharactersCharacterIdFittings200Ok> list=api.getCharactersCharacterIdFittings(Integer.parseInt(charID),null,null,null,null);//datasource, token, userAgent, xUserAgent)
+			for (GetCharactersCharacterIdFittings200Ok i: list) {
+				res.add(i.getName());
+			}
+			return res;
+		} catch (NumberFormatException | ApiException e) {
+			e.printStackTrace();
+		} 
+		return res;
 	}
 }

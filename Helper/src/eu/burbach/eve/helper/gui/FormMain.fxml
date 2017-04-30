@@ -23,7 +23,6 @@
                                           <TableView fx:id="charTable" onMouseClicked="#tableCharacterSelected" prefHeight="430.0" prefWidth="864.0">
                                             <columns>
                                               <TableColumn fx:id="namecol" editable="false" prefWidth="205.0" text="Char" />
-                                              <TableColumn fx:id="realcol" prefWidth="235.0" text="Real Life" />
                                             </columns>
                                           </TableView>
                                        </content>
@@ -71,6 +70,28 @@
                               </ScrollPane>
                            </children>
                         </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Char Fittings">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollPane prefViewportHeight="448.0" prefViewportWidth="865.0">
+                                 <content>
+                                    <TableView fx:id="fittingTable" prefHeight="448.0" prefWidth="865.0">
+                                      <columns>
+                                        <TableColumn fx:id="fittingnamecol" prefWidth="236.0" text="Name" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Corp Fittings">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                   </Tab>
               </tabs>
